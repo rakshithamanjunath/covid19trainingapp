@@ -1,7 +1,6 @@
 import './Search.css'
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
-import '../TableComponent/Table/Table.css';
 import Data from '../../statewise-cases.json';
 const stateStatistics = Data.data.state_data;
 class Search extends Component {
