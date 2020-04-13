@@ -6,9 +6,9 @@
 }
 .widget{
     font-size: 30px;
-    color: coral;
+    color: #112236;
     width: 25%;
-    height: 200px;
+    height: 100px;
     margin: 20px;
     display: flex;
     align-items: center;
@@ -20,4 +20,7 @@
 }
 .widget p{
     /* margin-left: 10px; */
+}
+input.input{
+    margin-top: 0px;
 }
