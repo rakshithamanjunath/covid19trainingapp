@@ -1,0 +1,26 @@
+.banner{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 20px;
+    height: 500px;
+}
+.bannerText{
+    width: calc(50% - 40px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px 10px;
+}
+.bannerText h1{
+    font-size: 40px;
+    color : #1f2b35
+}
+.bannerText p{
+    font-size: 20px;
+    color: #6f8394;
+}
+.bannerImage{
+    width: 50%;
+    background: linear-gradient(to top right, #0081F6 0, #44A6FF 100%);
+}
