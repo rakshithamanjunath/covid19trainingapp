@@ -1,63 +1,63 @@
 import '../../src/components/Search/Search.css';
+import '../../src/components/Table/Table.css';
 import React, { Component } from 'react';
-import Data from '../statewise-cases.json';
-const stateStatistics = Data.data.state_data;
 class Dashboard extends Component {
 
-    // constructor(props) {
-    //     super(props) 
-        state = { 
+    constructor(props) {
+        super(props) 
+        this.state = { 
           statesInCountry: [
-              { id: 1, statename: 'Karnataka', total: 175, active:151 , recovered:20, deceased:4},
-              { id: 2, statename: 'Maharashtra', total: 891, active:769 , recovered:70, deceased:52},
-              { id: 3, statename: 'Delhi', total: 525, active:502 , recovered:16, deceased:7},
-              { id: 4, statename: 'Kerala', total: 327, active: 266, recovered:59, deceased:2}
+              {   statename: 'Karnataka', total : '', active:151 , recovered:20, deceased:4},
            ],
            search : "",
-           loading: true
+           isLoaded: false,
+           items : []
         }
-    //  }
+     }
 
      onchange = e => {
         this.setState({search : e.target.value})
     }
-    // async componentDidMount(){
-    //     debugger;
-    //     const url = "https://api.covid19api.com/all";
-    //     const response = await fetch(url);
-    //     console.log(response)
-    //     const data = await response.json(); 
-    //     debugger;
-    //     console.log(data);
-    // }
      renderTableHeader() {
       let header = Object.keys(this.state.statesInCountry[0])
       return header.map((key, index) => {
          return <th key={index}>{key.toUpperCase()}</th>
       })
    }
-   renderTableData() {
-      return stateStatistics.map((eachState, index) => {
+   renderTableData(data) {
+      return data.map((eachState, index) => {
         const {search} = this.state;
         // console.log(search);
-         const { id, place, confirmed_indian, confirmed_foreign, cured, deaths } = eachState //destructuring
-         if (search !== "" && place.toLowerCase().indexOf(search) === -1 ){
+         const { statecode, state, confirmed, recovered, active, deaths } = eachState //destructuring
+         if (search !== "" && state.toLowerCase().indexOf(search) === -1 ){
              return null
          }
          return (
-            <tr key={id}>
-                <td>{id}</td>
-               <td>{place}</td>
-               <td>{confirmed_indian}</td>
-               <td>{confirmed_foreign}</td>
-               <td>{cured}</td>
+            <tr key={statecode}>
+                <td>{state}</td>
+               <td>{confirmed}</td>
+               <td>{active}</td>
+               <td>{recovered}</td>
                <td>{deaths}</td>
             </tr>
          )
       })
    }
-
+   async componentDidMount(){
+    const url = "https://api.covid19india.org/data.json";
+    const response = await fetch(url);
+    console.log(response)
+    const data = await response.json().then(json => {
+        // console.log(json.statewise)
+        this.setState({
+            isLoaded: true,
+            items: json.statewise
+          });        
+        });
+    console.log(data);
+}
     render(){
+        const items = this.state.items;
         return(
         <>
             <input type="text" placeholder="Search the country" onChange={this.onchange}></input>
@@ -66,7 +66,7 @@ class Dashboard extends Component {
             <table id='states'>
                 <tbody>
                     <tr>{this.renderTableHeader()}</tr>
-                    {this.renderTableData()}
+                    {this.renderTableData(items)}
                 </tbody>
             </table>
         </>
