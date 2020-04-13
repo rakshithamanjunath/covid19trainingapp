@@ -47,7 +47,6 @@ class Widget extends Component {
      renderTableData(data) {
         return data.map((eachState, index) => {
           const {search} = this.state;
-          // console.log(search);
            const { CountryCode, Country, TotalConfirmed, TotalRecovered, TotalDeaths } = eachState //destructuring
            if (search !== "" && Country.toLowerCase().indexOf(search) === -1 ){
                return null
