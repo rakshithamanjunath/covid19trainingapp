@@ -1,5 +1,6 @@
 import './Header.css'
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // import Dashboard from '../../Pages/Dashboard';
 // import Widget from '../Widget/Widget';
 // import {
@@ -12,10 +13,10 @@ class Header extends Component {
         
         <>
         <div className="headerMain">
-            <a href="/" className="headerDiv">Logo</a>
+            <Link to="/" className="headerDiv">Logo</Link>
             <div className="rightDiv">
-                <a href="/globalstat"  className="headerDiv">Global Statistics</a>
-                <a href="/search"  className="headerDiv">Search</a>
+                <Link to="/globalstat"  className="headerDiv">Global Statistics</Link>
+                <Link to="/search"  className="headerDiv">Search</Link>
             </div>
         </div>
         

@@ -14,7 +14,7 @@
     color: #1f2b35;
     text-decoration: none;
 }
-.headerDiv:hover{
+.headerDiv:hover, .headerDiv:focus{
     text-decoration: none;    
 }
 .rightDiv{
