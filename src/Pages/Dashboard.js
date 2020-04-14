@@ -8,7 +8,8 @@ class Dashboard extends Component {
     constructor(props) {
         super(props) 
         this.state = { 
-           search : ""
+           search : "",
+           heading:"List of States affected by Covid-19 in India"
         }
      }
 
@@ -17,11 +18,10 @@ class Dashboard extends Component {
     }
 
     render(){
-        const items = this.state.items;
         return(
         <>
-            <Search change={this.onchange}/>
-            <Table search={this.state.search} />
+            <Search change={this.onchange} />
+            <Table search={this.state.search} heading={this.state.heading} />
         </>
         );
     }

@@ -1,46 +1,39 @@
+import React, { useState, useEffect } from 'react';
 
-import React, { Component } from 'react';
+const useFetch = (url) => {
+  const [data, updateData] = useState([]);
+
+  // empty array as second argument equivalent to componentDidMount
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(url);
+      const json = await response.json();
+      updateData(json.Global);
+    //   renderGlobalData(json.Global);
+    }
+    fetchData();
+  }, [url]);
+
+  return data;
+};
+const renderGlobalData = (updateData) => {
+    return (
+     <div className="widgetMain" key = '1'>
+         <div className="widget">New Confirmed <p>{updateData["NewConfirmed"]}</p></div>
+         <div className="widget">Total <p>{updateData["TotalConfirmed"]}</p></div>
+         <div className="widget">Recovered <p> {updateData["TotalRecovered"]}</p></div>
+         <div className="widget">Deceased <p>{updateData["TotalDeaths"]}</p></div> 
+     </div>
+    );
+}
 const Util = () => {
-    
-    renderTableData(data){
-        return data.map((eachState, index) => {
-          const {search} = this.state;
-          // console.log(search);
-           const { CountryCode, Country, TotalConfirmed, TotalRecovered, TotalDeaths } = eachState //destructuring
-           if (search !== "" && Country.toLowerCase().indexOf(search) === -1 ){
-               return null
-           }
-           return (
-              <tr key={CountryCode}>
-                  <td>{Country}</td>
-                 <td>{TotalConfirmed}</td>
-                 <td>{TotalRecovered}</td>
-                 <td>{TotalDeaths}</td>
-              </tr>
-           )
-        })
-     }
-
+    const URL = 'https://api.covid19api.com/summary';
+    const result = useFetch(URL);
+    const renderData  = renderGlobalData(result);
+    return (
+      <div>
+        {renderData}
+      </div>
+    );
 }
 export default Util;
-
-
-
-
-// const [country, setCountry] = useState([]);
-// const [loading,setLoading] = useState(false);
-// const [currentPage, setCurrentpage] = useState(1);
-// const [postsperpage, setPostsPage] = useState(10);
-
-// useEffect (() => {
-//   const fetchCountry = async () => {
-//     debugger;
-//     setLoading(true);
-//     const res = await axios.get('https://api.covid19api.com/summary');
-//     debugger;
-//     setCountry(res.Countries);
-//     setLoading(false);
-//   }
-//   fetchCountry();
-// },[]);
-// console.log(country);

@@ -10,7 +10,11 @@ class Table extends Component {
            ],
            isLoaded: false,
            items : [],
-           search:""
+           search:"",
+           countryName: [
+            {   Country: '', Confirmed: '', Recovered:'' , Deceased:'' },
+         ],
+         countries : []
         }
      }
      renderTableHeader() {
@@ -37,25 +41,38 @@ class Table extends Component {
            )
         })
      }
-     async componentDidMount(){
-      const url = "https://api.covid19india.org/data.json";
-      const response = await fetch(url);
-      console.log(response)
-      const data = await response.json().then(json => {
-          console.log(json.statewise)
-          this.setState({
-              isLoaded: true,
-              items: json.statewise
-            });        
+      componentDidMount(){
+    //   const url = "https://api.covid19india.org/data.json";
+    //   const response = await fetch(url);
+    //   console.log(response)
+    //   await response.json().then(json => {
+    //       console.log(json.statewise)
+    //       this.setState({
+    //           isLoaded: true,
+    //           items: json.statewise
+    //         });        
+    //       });
+          
+          Promise.all([fetch('https://api.covid19india.org/data.json'), fetch('https://api.covid19api.com/summary')])
+
+          .then(([res1, res2]) => { 
+             return Promise.all([res1.json(), res2.json()]) 
+          })
+          .then(([res1, res2]) => {
+            // set state in here
+            this.setState({
+                isLoaded: true,
+                items: res1.statewise,
+                countries : res2.Countries
+            }); 
           });
-      console.log(data);
-  }
+    }
     render(){
         const items = this.state.items;
-        
+        // const countries = this.state.countries;
         return(
         <>
-        <h1 id='title'>List of States affected by Covid-19 in India </h1>
+        <h1 id='title'>{this.props.heading} </h1>
         <table id='states'>
             <tbody>
                 <tr>{this.renderTableHeader()}</tr>
