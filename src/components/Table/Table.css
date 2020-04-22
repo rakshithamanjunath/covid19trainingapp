@@ -15,6 +15,7 @@
   #states td, #states th {
     border: 1px solid #ddd;
     padding: 8px;
+    width: 200px;
   }
   
   #states tr:nth-child(even){background-color: #f2f2f2;}
@@ -27,4 +28,12 @@
     text-align: center;
     background-color: #0081F6;
     color: white;
+  }
+  td p{
+    /* width:25px; */
+    /* height: 25px; */
+    border: 1px solid #112236;
+    color: #ffffff;
+    background-color: #112236;
+    /* margin-right: 20px; */
   }

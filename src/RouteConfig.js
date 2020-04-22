@@ -14,9 +14,9 @@ class RouteConfig extends Component{
             <Router>
                 <Header />
                 <Switch>
-                <Route path="/" component={Banner} exact />
-                <Route path="/globalstat" component={Widget} exact />
-                <Route path="/search" component={Dashboard} exact />
+                    <Route path="/" component={Banner} exact />
+                    <Route path="/globalstat" component={Widget} exact />
+                    <Route path="/search" component={Dashboard} exact />
                 </Switch>
             </Router>
         );

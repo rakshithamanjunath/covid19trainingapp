@@ -6,7 +6,7 @@ class Table extends Component {
         super(props) 
         this.state = { 
           statesInCountry: [
-              {   statename: 'Karnataka', total : '', active:151 , recovered:20, deceased:4},
+              {   statename: '', total : '', active:151 , recovered:20, deceased:4},
            ],
            isLoaded: false,
            items : [],
@@ -14,7 +14,8 @@ class Table extends Component {
            countryName: [
             {   Country: '', Confirmed: '', Recovered:'' , Deceased:'' },
          ],
-         countries : []
+         countries : [],
+         districts : []
         }
      }
      renderTableHeader() {
@@ -23,20 +24,30 @@ class Table extends Component {
            return <th key={index}>{key.toUpperCase()}</th>
         })
      }
-     renderTableData(data) {
+     
+     renderTableData(data,districtsdata) {
+        
         return data.map((eachState, index) => {
           const {search} = this.props;
-           const { statecode, state, confirmed, recovered, active, deaths } = eachState //destructuring
+           const { state, confirmed, recovered, active, deaths,deltaconfirmed,deltarecovered,deltadeaths } = eachState //destructuring
            if (search !== "" && state.toLowerCase().indexOf(search) === -1 ){
                return null
            }
+        //    const statevalue = {state};
+        //    console.log(statevalue.state,"sts")
+           const dist = this.state.districts
+           function districtsfetch(dist){
+            // debugger;
+                console.log(dist) 
+            }
            return (
-              <tr key={statecode}>
-                  <td>{state}</td>
-                 <td>{confirmed}</td>
-                 <td>{active}</td>
-                 <td>{recovered}</td>
-                 <td>{deaths}</td>
+               
+              <tr key={state} onClick={districtsfetch(dist)}>
+                  <td >{state}</td>
+                <td><p className="deltaconfirmed">New Confirmed - {deltaconfirmed}</p>{confirmed}</td>
+                <td>{active}</td>
+                 <td><p className="deltacovered">New Recovered - {deltarecovered}</p>{recovered}</td>
+                 <td><p className="deltadeaths">New Deaths - {deltadeaths}</p>{deaths}</td>
               </tr>
            )
         })
@@ -53,7 +64,7 @@ class Table extends Component {
     //         });        
     //       });
           
-          Promise.all([fetch('https://api.covid19india.org/data.json'), fetch('https://api.covid19api.com/summary')])
+          Promise.all([fetch('https://api.covid19india.org/data.json'), fetch('https://api.covid19india.org/state_district_wise.json')])
 
           .then(([res1, res2]) => { 
              return Promise.all([res1.json(), res2.json()]) 
@@ -63,20 +74,23 @@ class Table extends Component {
             this.setState({
                 isLoaded: true,
                 items: res1.statewise,
-                countries : res2.Countries
+                districts : res2
             }); 
           });
     }
     render(){
         const items = this.state.items;
         // const countries = this.state.countries;
+        const districts = this.state.districts;
+        // console.log(items)
+        // console.log(districts)
         return(
         <>
         <h1 id='title'>{this.props.heading} </h1>
         <table id='states'>
             <tbody>
                 <tr>{this.renderTableHeader()}</tr>
-                {this.renderTableData(items)}
+                {this.renderTableData(items,districts)}
             </tbody>
         </table>
         </>
