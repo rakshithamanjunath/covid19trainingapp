@@ -29,8 +29,9 @@ class Table extends Component {
         
         return data.map((eachState, index) => {
           const {search} = this.props;
+          debugger;
            const { state, confirmed, recovered, active, deaths,deltaconfirmed,deltarecovered,deltadeaths } = eachState //destructuring
-           if (search !== "" && state.toLowerCase().indexOf(search) === -1 ){
+           if (search !== "" && state.toLowerCase().indexOf(search) === -1  ){
                return null
            }
         //    const statevalue = {state};

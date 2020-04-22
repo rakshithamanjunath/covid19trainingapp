@@ -9,7 +9,7 @@ class Widget extends Component {
         search : "",
         heading : "List of Countries affected by Covid-19 in the world",
         countryName: [
-            {  CountryCode:'', Country: '', Confirmed: '', Recovered:'' , Deceased:'' },
+            {   Country: '', Confirmed: '', Recovered:'' , Deceased:'' },
          ]
     }
 
@@ -33,14 +33,14 @@ class Widget extends Component {
      }
      renderTableData(data) {
         return data.map((eachState, index) => {
-          const {search} = this.state;
+          let {search} = this.state;
+          search = search.toLowerCase();
            const { CountryCode, Country, TotalConfirmed, TotalRecovered, TotalDeaths } = eachState //destructuring
            if (search !== "" && Country.toLowerCase().indexOf(search) === -1 ){
                return null
            }
            return (
               <tr key={CountryCode}>
-                 <td>{CountryCode}</td>
                  <td>{Country}</td>
                  <td>{TotalConfirmed}</td>
                  <td>{TotalRecovered}</td>

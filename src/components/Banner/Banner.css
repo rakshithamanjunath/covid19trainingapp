@@ -24,3 +24,11 @@
     width: 50%;
     background: linear-gradient(to top right, #0081F6 0, #44A6FF 100%);
 }
+@media  (max-width: 768px){
+    .bannerText h1{
+        font-size: 20px;
+    } 
+    .banner{
+        height: 100%;
+    } 
+}

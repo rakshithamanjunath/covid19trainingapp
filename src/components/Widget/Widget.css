@@ -24,3 +24,11 @@
 input.input{
     margin-top: 0px;
 }
+@media  (max-width: 768px){
+    .widget{
+        width:calc(100% - 40px);
+    } 
+    .widgetMain{
+        flex-direction: column
+    };
+}

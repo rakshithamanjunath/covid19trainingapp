@@ -18,10 +18,11 @@ class Dashboard extends Component {
     }
 
     render(){
+        let searchText = this.state.search;
         return(
         <>
             <Search change={this.onchange} />
-            <Table search={this.state.search} heading={this.state.heading} />
+            <Table search={searchText.toLowerCase()} heading={this.state.heading} />
         </>
         );
     }
