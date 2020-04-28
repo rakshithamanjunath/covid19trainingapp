@@ -8,6 +8,7 @@ import Banner from './components/Banner/Banner';
 import Widget from './components/Widget/Widget';
 import Dashboard from './Pages/Dashboard';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 class RouteConfig extends Component{
     render(){
         return(
@@ -18,6 +19,7 @@ class RouteConfig extends Component{
                     <Route path="/globalstat" component={Widget} exact />
                     <Route path="/search" component={Dashboard} exact />
                 </Switch>
+                <Footer />
             </Router>
         );
     }

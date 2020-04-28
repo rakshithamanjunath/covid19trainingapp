@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
 const useFetch = (url) => {
   const [data, updateData] = useState([]);
-
   // empty array as second argument equivalent to componentDidMount
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(url);
       const json = await response.json();
       updateData(json.Global);
-    //   renderGlobalData(json.Global);
     }
     fetchData();
   }, [url]);
-
-  return data;
+  return {data};
 };
 const renderGlobalData = (updateData) => {
     return (
@@ -29,7 +25,7 @@ const renderGlobalData = (updateData) => {
 const Util = () => {
     const URL = 'https://api.covid19api.com/summary';
     const result = useFetch(URL);
-    const renderData  = renderGlobalData(result);
+    let renderData =  renderGlobalData(result.data);
     return (
       <div>
         {renderData}

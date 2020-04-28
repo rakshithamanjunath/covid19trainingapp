@@ -1,6 +1,7 @@
 import './Table.css'
 import React, { Component } from 'react';
-
+import Spinner from '../UI/Spinner';
+import TableComponent from './Tablecomponent';
 class Table extends Component {
     constructor(props) {
         super(props) 
@@ -29,16 +30,12 @@ class Table extends Component {
         
         return data.map((eachState, index) => {
           const {search} = this.props;
-          debugger;
            const { state, confirmed, recovered, active, deaths,deltaconfirmed,deltarecovered,deltadeaths } = eachState //destructuring
            if (search !== "" && state.toLowerCase().indexOf(search) === -1  ){
-               return null
+               return null;
            }
-        //    const statevalue = {state};
-        //    console.log(statevalue.state,"sts")
            const dist = this.state.districts
            function districtsfetch(dist){
-            // debugger;
                 console.log(dist) 
             }
            return (
@@ -54,16 +51,6 @@ class Table extends Component {
         })
      }
       componentDidMount(){
-    //   const url = "https://api.covid19india.org/data.json";
-    //   const response = await fetch(url);
-    //   console.log(response)
-    //   await response.json().then(json => {
-    //       console.log(json.statewise)
-    //       this.setState({
-    //           isLoaded: true,
-    //           items: json.statewise
-    //         });        
-    //       });
           
           Promise.all([fetch('https://api.covid19india.org/data.json'), fetch('https://api.covid19india.org/state_district_wise.json')])
 
@@ -79,21 +66,17 @@ class Table extends Component {
             }); 
           });
     }
+
     render(){
         const items = this.state.items;
-        // const countries = this.state.countries;
-        const districts = this.state.districts;
-        // console.log(items)
-        // console.log(districts)
+        let tablesummary = null;
+        tablesummary = <TableComponent heading={this.props.heading} header={this.renderTableHeader()} tablecontent={this.renderTableData(items)} />
+        if(!this.state.isLoaded){
+           tablesummary = <Spinner />
+        }
         return(
         <>
-        <h1 id='title'>{this.props.heading} </h1>
-        <table id='states'>
-            <tbody>
-                <tr>{this.renderTableHeader()}</tr>
-                {this.renderTableData(items,districts)}
-            </tbody>
-        </table>
+            {tablesummary}
         </>
         );
     }
