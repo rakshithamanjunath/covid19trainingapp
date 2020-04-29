@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './Banner.css';
 const useFetch = (url) => {
   const [data, updateData] = useState([]);
-  // empty array as second argument equivalent to componentDidMount
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(url);
@@ -28,7 +27,7 @@ const Banner = () => {
                 </div>
                 <div className="bannerImage"></div>
             </div>
-            <div className="globalCount">{result["data"].TotalConfirmed} <p className="globalSpan">people are affected by covid-19</p></div>
+            <div className="globalCount">{result["data"].TotalConfirmed} <p className="globalSpan">people are affected by covid-19 Globally</p></div>
             </>
     );
 }

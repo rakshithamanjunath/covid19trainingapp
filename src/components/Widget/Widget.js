@@ -7,7 +7,7 @@ const Widget = () => {
   const [countries, updatedCountries] = useState([]);
   const [heading] = useState("List of Countries affected by Covid-19 in the world");
   const [countryName] = useState(["Country","confirmed","recovered","deseased"]);
-  const [isloaded, updatedisLoaded] = useState([]);
+  const [isloaded, updatedisLoaded] = useState(false);
   const [search,updatedSearch]  = useState('');
   const useFetch = (url) => {
   // empty array as second argument equivalent to componentDidMount

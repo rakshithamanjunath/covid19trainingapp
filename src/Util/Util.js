@@ -1,35 +1,36 @@
-import React, { useState, useEffect } from 'react';
-const useFetch = (url) => {
-  const [data, updateData] = useState([]);
-  // empty array as second argument equivalent to componentDidMount
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(url);
-      const json = await response.json();
-      updateData(json.Global);
-    }
-    fetchData();
-  }, [url]);
-  return {data};
-};
-const renderGlobalData = (updateData) => {
+import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { requestApiData } from "../store/actions";
+import { Component } from "react";
+class Util extends Component {
+  componentDidMount() {
+    this.props.requestApiData();
+    console.log(this.props)
+  }
+  renderGlobalData = (updateDataGlobal) => {
     return (
      <div className="widgetMain" key = '1'>
-         <div className="widget">New Confirmed <p>{updateData["NewConfirmed"]}</p></div>
-         <div className="widget">Total <p>{updateData["TotalConfirmed"]}</p></div>
-         <div className="widget">Recovered <p> {updateData["TotalRecovered"]}</p></div>
-         <div className="widget">Deceased <p>{updateData["TotalDeaths"]}</p></div> 
+         <div className="widget">New Confirmed <p>{updateDataGlobal["NewConfirmed"]}</p></div>
+         <div className="widget">Total <p>{updateDataGlobal["TotalConfirmed"]}</p></div>
+         <div className="widget">Recovered <p> {updateDataGlobal["TotalRecovered"]}</p></div>
+         <div className="widget">Deceased <p>{updateDataGlobal["TotalDeaths"]}</p></div> 
      </div>
     );
 }
-const Util = () => {
-    const URL = 'https://api.covid19api.com/summary';
-    const result = useFetch(URL);
-    let renderData =  renderGlobalData(result.data);
+
+    render(){
+      const results = this.props.data;
     return (
       <div>
-        {renderData}
+        {this.renderGlobalData(results)}
       </div>
     );
+    }
 }
-export default Util;
+const mapStateToProps = state => ({ data: state.data });
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ requestApiData }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Util);
