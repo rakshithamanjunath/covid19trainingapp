@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Widget.css'
-import Utils from '../../Util/Util';
+import Global from '../../Global/Global';
 import Spinner from '../UI/Spinner';
 import TableComponent from '../Table/Tablecomponent';
 const Widget = () => {
@@ -57,7 +57,7 @@ const Widget = () => {
          }
     return(
         <>
-            <Utils />
+            <Global />
             <input type="text" placeholder="Search the country/state name" onChange={e => updatedSearch(e.target.value)}></input>
             {tablesummary}
         </>

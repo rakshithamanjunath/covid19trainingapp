@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { requestApiData } from "../store/actions";
 import { Component } from "react";
-class Util extends Component {
+class Global extends Component {
   componentDidMount() {
     this.props.requestApiData();
     console.log(this.props)
@@ -33,4 +33,4 @@ const mapStateToProps = state => ({ data: state.data });
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ requestApiData }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Util);
+export default connect(mapStateToProps, mapDispatchToProps)(Global);
