@@ -28,10 +28,17 @@
     height: 100%;
 }
 @media  (max-width: 768px){
+    .bannerText {
+        width: calc(100% - 50px);
+    }
     .bannerText h1{
         font-size: 20px;
     } 
     .banner{
         height: 100%;
+        flex-direction: column-reverse;
     } 
+    .bannerImage{
+        width: 100%;
+    }
 }

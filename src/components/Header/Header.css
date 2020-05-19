@@ -42,3 +42,11 @@
 .headerDiv img{
     width: 200px;
 }
+@media  (max-width: 768px) {
+    .headerDiv img{
+        width: 100px;
+    }  
+    .globalCount{
+        margin: 30px 20px;
+    }
+}

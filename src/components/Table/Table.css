@@ -32,11 +32,18 @@
   td p{
     /* width:25px; */
     /* height: 25px; */
-    border: 1px solid #112236;
-    color: #ffffff;
-    background-color: #112236;
+    /* border: 1px solid #112236; */
+    /* color: #ffffff; */
+    /* background-color: #112236; */
     /* margin-right: 20px; */
   }
   .deltaconfirmed, .deltacovered, .deltadeaths{
     margin-right: 20px;
+    display: inline;
+  }
+  @media  (max-width: 768px) {
+    .deltaconfirmed, .deltacovered, .deltadeaths{
+      margin-right: 0px;
+      display: block;
+    }
   }

@@ -42,16 +42,16 @@
                            
                         <tr key={state} onClick={districtsfetch(dist)}>
                               <td >{state}</td>
-                           <td><span className="deltaconfirmed red"> 
+                           <td><p className="deltaconfirmed red"> 
                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                           {deltaconfirmed}</span>{confirmed}</td>
+                           {deltaconfirmed}</p>{confirmed}</td>
                            <td>{active}</td>
-                           <td><span className="deltacovered green">
+                           <td><p className="deltacovered green">
                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                           {deltarecovered}</span>{recovered}</td>
-                           <td><span className="deltadeaths grey">
+                           {deltarecovered}</p>{recovered}</td>
+                           <td><p className="deltadeaths grey">
                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-                           {deltadeaths}</span>{deaths}</td>
+                           {deltadeaths}</p>{deaths}</td>
                         </tr>
                      )
                   })
