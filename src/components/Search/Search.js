@@ -5,7 +5,7 @@ class Search extends Component {
         const change = this.props.change;
         return(
         <>
-            <input type="text" placeholder="Search the country/state name" onChange={change}></input>
+            <input type="text" placeholder="Search the name of the state" onfocus="this.placeholder = ''" onChange={change}></input>
         </>
         );
     }

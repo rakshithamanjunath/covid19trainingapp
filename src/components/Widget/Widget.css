@@ -6,7 +6,7 @@
 }
 .widget{
     font-size: 30px;
-    color: #112236;
+    /* color: #112236; */
     width: 25%;
     height: 100px;
     margin: 20px;
@@ -24,6 +24,9 @@
 input.input{
     margin-top: 0px;
 }
+input:focus::placeholder {
+    color: transparent;
+  }
 @media  (max-width: 768px){
     .widget{
         width:calc(100% - 40px);

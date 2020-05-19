@@ -11,10 +11,10 @@ class Global extends Component {
   renderGlobalData = (updateDataGlobal) => {
     return (
      <div className="widgetMain" key = '1'>
-         <div className="widget">New Confirmed <p>{updateDataGlobal["NewConfirmed"]}</p></div>
-         <div className="widget">Total <p>{updateDataGlobal["TotalConfirmed"]}</p></div>
-         <div className="widget">Recovered <p> {updateDataGlobal["TotalRecovered"]}</p></div>
-         <div className="widget">Deceased <p>{updateDataGlobal["TotalDeaths"]}</p></div> 
+         <div className="widget red">New Confirmed <p>+{updateDataGlobal["NewConfirmed"]}</p></div>
+         <div className="widget blue">Total <p>{updateDataGlobal["TotalConfirmed"]}</p></div>
+         <div className="widget green">Recovered <p> {updateDataGlobal["TotalRecovered"]}</p></div>
+         <div className="widget grey">Deceased <p>{updateDataGlobal["TotalDeaths"]}</p></div> 
      </div>
     );
 }

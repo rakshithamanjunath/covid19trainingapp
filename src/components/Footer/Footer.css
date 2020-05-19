@@ -5,12 +5,11 @@
     background: #1F2B35;
 }
 .footermain img{
-    width: 500px;
+    width: 200px;
     padding: 10px;
-    margin: 10px;
 }
 .copyright{
     width: 100%;
     color: #ffffff;
-    padding: 20px;
+    padding: 10px;
 }

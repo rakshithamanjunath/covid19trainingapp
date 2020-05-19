@@ -10,7 +10,6 @@ const Widget = () => {
   const [isloaded, updatedisLoaded] = useState(false);
   const [search,updatedSearch]  = useState('');
   const useFetch = (url) => {
-  // empty array as second argument equivalent to componentDidMount
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(url);
@@ -31,16 +30,29 @@ const Widget = () => {
  const renderTableData = (data)  => {
     return data.map((eachState, index) => {
       const searchtext = search.toLowerCase();
-       const { CountryCode, Country, TotalConfirmed, TotalRecovered, TotalDeaths } = eachState //destructuring
+       const { CountryCode, Country, TotalConfirmed, TotalRecovered, TotalDeaths,NewConfirmed,NewDeaths,NewRecovered } = eachState //destructuring
        if (searchtext !== "" && Country.toLowerCase().indexOf(searchtext) === -1 ){
            return null
        }
        return (
           <tr key={CountryCode}>
              <td>{Country}</td>
-             <td>{TotalConfirmed}</td>
-             <td>{TotalRecovered}</td>
-             <td>{TotalDeaths}</td>
+             <td>
+                
+             <span className="deltaconfirmed red"> 
+               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+               {NewConfirmed}</span>
+               {TotalConfirmed}</td>
+             <td>             
+                <span className="deltaconfirmed green"> 
+               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+               {NewRecovered}</span>
+               {TotalRecovered}</td>
+             <td>
+             <span className="deltaconfirmed grey "> 
+               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+               {NewDeaths}</span>
+               {TotalDeaths}</td>
           </tr>
        )
     })
@@ -58,7 +70,7 @@ const Widget = () => {
     return(
         <>
             <Global />
-            <input type="text" placeholder="Search the country/state name" onChange={e => updatedSearch(e.target.value)}></input>
+            <input class="inputbox" type="text" placeholder="Search the country name" onfocus="this.placeholder = ''" onChange={e => updatedSearch(e.target.value)}></input>
             {tablesummary}
         </>
            

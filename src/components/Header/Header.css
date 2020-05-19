@@ -1,22 +1,26 @@
 .headerMain{
     display: flex;
-    height: 50px;
+    height: 80px;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
     align-items: center;
-    background-color: #f9f9f9;
+    background-color: #1F2B35;
     padding: 0px 20px;
     justify-content: space-between;
 }
 .headerDiv{
     font-size: 16px;
-    color: #1f2b35;
+    color: #ffffff;
     text-decoration: none;
 }
 .headerDiv:hover, .headerDiv:focus{
-    text-decoration: none;    
+    text-decoration: none;   
+    color: #ffffff; 
 }
+/* .headerDiv:active{
+    border-bottom: 5px solid #ffffff;
+} */
 .rightDiv{
     display: flex;
     width: 50%;

@@ -5,8 +5,18 @@
   overflow-x: hidden;
 }
 
-
-
+.red{
+  color:#ff073a;
+}
+.blue{
+  color: #007bff;
+}
+.green{
+  color: #28a745;
+}
+.grey{
+  color: #6c757d;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
