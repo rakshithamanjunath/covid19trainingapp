@@ -5,7 +5,7 @@
     padding: 50px 0px;
 }
 .widget{
-    font-size: 30px;
+    font-size: 20px;
     /* color: #112236; */
     width: 25%;
     height: 100px;
@@ -18,9 +18,7 @@
     padding: 30px 24px;
     box-shadow: 0 16px 48px #E2E8ED;
 }
-.widget p{
-    /* margin-left: 10px; */
-}
+
 input.input{
     margin-top: 0px;
 }
@@ -34,4 +32,9 @@ input:focus::placeholder {
     .widgetMain{
         flex-direction: column
     };
+}
+@media  (max-width: 991px) {
+    .widget{
+        font-size: 16px;
+    }
 }

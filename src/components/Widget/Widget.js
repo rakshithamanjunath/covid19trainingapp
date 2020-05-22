@@ -6,7 +6,7 @@ import TableComponent from '../Table/Tablecomponent';
 const Widget = () => {
   const [countries, updatedCountries] = useState([]);
   const [heading] = useState("List of Countries affected by Covid-19 in the world");
-  const [countryName] = useState(["Country","confirmed","recovered","deseased"]);
+  const [countryName] = useState(["Country","confirmed","recovered","deceased"]);
   const [isloaded, updatedisLoaded] = useState(false);
   const [search,updatedSearch]  = useState('');
   const useFetch = (url) => {
